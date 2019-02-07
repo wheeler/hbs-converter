@@ -1,15 +1,15 @@
-# cjsx-converter
+# hbs-converter
 
-A tool to help convert Coffee/CJSX files into pretty JS/JSX
+A tool to help convert Handlebars Templates (HBS) files into pretty JSX
 
 ## Installation
 
 ```
-yarn global add cjsx-converter
+yarn global add hbs-converter
 ```
 
 ## Usage
 
 ```
-$ cjsx-converter <file>
+$ hbs-converter <file>
 ```
