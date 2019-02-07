@@ -14,15 +14,14 @@
     "cjsx-converter": "bin/cjsx-converter.js"
   },
   "dependencies": {
-    "cjsx-codemod": "^0.0.0",
     "commander": "^2.10.0",
     "decaffeinate": "^4.0.1",
+    "handlebars-to-jsx": "^0.0.7",
     "jscodeshift": "^0.3.32",
     "prettier": "^1.11.0",
     "react-codemod": "^4.0.0"
   },
   "devDependencies": {
-    "@gusto/eslint-config-gusto": "^7.0.0",
     "babel-eslint": "^7.2",
     "chai": "^4.1.1",
     "eslint": "^3.19.0",
