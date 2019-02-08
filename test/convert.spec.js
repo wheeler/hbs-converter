@@ -63,4 +63,8 @@ describe('hbs-converter', () => {
   context('when there is bad whitespace that might cause React.Fragment tags', () => {
     itConverts('whitespace-fragment.hbs');
   });
+
+  context('when there is a known non-standard block', () => {
+    itConverts('link-block.hbs');
+  });
 });

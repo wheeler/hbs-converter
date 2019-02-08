@@ -3107,10 +3107,9 @@ gulplog@^1.0.0:
   dependencies:
     glogg "^1.0.0"
 
-handlebars-to-jsx@^0.0.7:
+"handlebars-to-jsx@https://github.com/wheeler/handlebars-to-jsx#a88cf58df365db96aa07753224ea30e4f0405ff0":
   version "0.0.7"
-  resolved "https://registry.yarnpkg.com/handlebars-to-jsx/-/handlebars-to-jsx-0.0.7.tgz#1285cc6adbadcf11d318d3de0d749aca1ffc1a03"
-  integrity sha512-4dv+qRAiv7YobhdIHEvXlA5jvxV4zRKgQRRObNWIH49D7+0T1EvKYGqrWI4gmxqnQvPvlWmIhM9TdKLWMYXSWQ==
+  resolved "https://github.com/wheeler/handlebars-to-jsx#a88cf58df365db96aa07753224ea30e4f0405ff0"
   dependencies:
     "@babel/generator" "^7.1.3"
     "@babel/parser" "^7.1.3"

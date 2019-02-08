@@ -11,13 +11,14 @@
     "lint": "eslint --ext .jsx,.js ."
   },
   "bin": {
-    "cjsx-converter": "bin/cjsx-converter.js"
+    "hbs-converter": "bin/hbs-converter.js"
   },
   "dependencies": {
     "commander": "^2.10.0",
     "decaffeinate": "^4.0.1",
-    "handlebars-to-jsx": "^0.0.7",
+    "handlebars-to-jsx": "https://github.com/wheeler/handlebars-to-jsx#a88cf58df365db96aa07753224ea30e4f0405ff0",
     "jscodeshift": "^0.3.32",
+    "lodash": "^4.17.11",
     "prettier": "^1.11.0",
     "react-codemod": "^4.0.0"
   },
