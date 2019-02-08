@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 const Component = props => (
   <div>
-    Hello, {props.firstName} {props.lastName}. Welcome to {props.product}
+    Hello, {props.firstName} {props.lastName}. Welcome to {props.product}.<br />
+    {props.firstName}, this is going to be fun.
   </div>
 );
 

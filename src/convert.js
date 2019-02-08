@@ -1,5 +1,6 @@
 const fs = require('fs');
 const util = require('util');
+const _ = require('lodash');
 const { dirname, basename, extname } = require('path');
 const jscodeshift = require('jscodeshift');
 const fixTemplateLiteralTransform = require('./fixTemplateLiteralTransform');
@@ -73,7 +74,7 @@ const convertHandlebars = ({ source, path }) => {
 
 const setupPropTypes = runTransform((source) => {
   const propFinder = /props\.(\w+)/g;
-  const propNames = [];
+  let propNames = [];
   let match;
 
   // eslint-disable-next-line no-cond-assign
@@ -85,6 +86,8 @@ const setupPropTypes = runTransform((source) => {
   if (propNames.length === 0) {
     return source.replace(/props =>/, '() =>');
   }
+
+  propNames = _.uniq(propNames);
 
   const propNamesJson = propNames.reduce((reduction, propName) => `${reduction}\n${propName}: PropTypes.any.isRequired,`, '');
   const newSource = `import PropTypes from 'prop-types';\n${source.replace(/export default/, 'const Component = ')}\n\nComponent.propTypes = {${propNamesJson}}\n\nexport default Component;`;
