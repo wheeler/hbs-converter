@@ -57,4 +57,7 @@ describe('hbs-converter', () => {
   context('when the template multiple props', () => {
     itConverts('three-props.hbs');
   });
+  context('when there is bad whitespace that might cause React.Fragment tags', () => {
+    itConverts('whitespace-fragment.hbs');
+  });
 });

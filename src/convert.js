@@ -55,9 +55,18 @@ const lintFix = ({ source, path }) => {
 };
 
 // Handlebars Specific Transformers
+const handleWhitespace = runTransform((source) => {
+  let newSource;
+
+  newSource = source.replace(/^[\s\n]+/, '');
+  newSource = newSource.replace(/[\s\n]+$/, '');
+  newSource = newSource.replace(/}}[\s\n]+</g, '}}<');
+  newSource = newSource.replace(/>[\s\n]+{{/g, '>{{');
+  return newSource;
+});
+
 const convertHandlebars = ({ source, path }) => {
-  // TODO: trim whitespace? It appears to cause an unnecessary fragment
-  const newSource = hbsToJsx(source, { isComponent: true, isModule: true }); // not using module option because it's not great.
+  const newSource = hbsToJsx(source, { isComponent: true, isModule: true });
   const newPath = `${dirname(path)}/${basename(path, extname(path))}.jsx`;
   return { source: newSource, path: newPath };
 };
@@ -100,6 +109,7 @@ const runSteps = (...fns) =>
 
 const convert = runSteps(
   // wrapInDivToAvoidOuterFragment
+  handleWhitespace,
   convertHandlebars,
   setupPropTypes,
   setupImport,
