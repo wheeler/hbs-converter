@@ -1,10 +1,10 @@
 {
-  "name": "cjsx-converter",
-  "version": "1.0.1",
-  "description": "Convert Coffee/CJSX into pretty JS/JSX",
+  "name": "hbs-converter",
+  "version": "1.0.0",
+  "description": "Convert Handlebars into pretty JSX",
   "main": "index.js",
-  "repository": "https://github.com/Gusto/cjsx-converter.git",
-  "author": "Rylan Collins <rylan@gusto.com>",
+  "repository": "https://github.com/wheeler/hbs-converter.git",
+  "author": "Mark Wheeler <mark.wheeler@gusto.com>",
   "license": "MIT",
   "scripts": {
     "test": "mocha test/**/*.spec.js",
@@ -16,7 +16,7 @@
   "dependencies": {
     "commander": "^2.10.0",
     "decaffeinate": "^4.0.1",
-    "handlebars-to-jsx": "https://github.com/wheeler/handlebars-to-jsx#a88cf58df365db96aa07753224ea30e4f0405ff0",
+    "handlebars-to-jsx": "https://github.com/wheeler/handlebars-to-jsx#4cd0edce05eb3c28bdee5d1435bd2db1317eb75e",
     "jscodeshift": "^0.3.32",
     "lodash": "^4.17.11",
     "prettier": "^1.11.0",

@@ -1,3 +1,5 @@
 <div>
-  This contains a {{#linkTo '/somepage' '' 'some-class' ''}}link{{/linkTo}}
+  <div>1 - {{linkTo '/nonblock' 'Non-Block' 'nb-class'}}</div>
+  <div>2 - {{#linkTo '/textchild' '' 'tc-class' ''}}link{{/linkTo}}</div>
+  <div>3 - {{#linkTo '/htmlchild' '' 'tc-class' ''}}<div>link</div>{{/linkTo}}</div>
 </div>

@@ -59,10 +59,17 @@ const lintFix = ({ source, path }) => {
 const handleWhitespace = runTransform((source) => {
   let newSource;
 
+  // trim leading and trailing whitespace
   newSource = source.replace(/^[\s\n]+/, '');
   newSource = newSource.replace(/[\s\n]+$/, '');
+
+  // get rid of indentation
+  newSource = newSource.replace(/\n\s+/g, '\n');
+
+  // push stash tags together to combat fragments
   newSource = newSource.replace(/}}[\s\n]+</g, '}}<');
   newSource = newSource.replace(/>[\s\n]+{{/g, '>{{');
+  newSource = newSource.replace(/}}[\n\s]+{{/g, '}}{{');
   return newSource;
 });
 
@@ -100,9 +107,33 @@ const setupPropTypes = runTransform((source) => {
   return newSource;
 });
 
-const setupImport = runTransform(source => `import React from 'react';\n${source}`);
-// END Handlebars Specific Transformers
+const importMap = {
+  Link: 'components/elements',
+  LinkExternal: 'components/elements',
+};
 
+const setupImport = runTransform((source) => {
+  let imports = "import React from 'react';\n";
+  const importsByFile = {};
+  Object.entries(importMap).forEach((entry) => {
+    const [key, file] = entry;
+    if (source.match(new RegExp(`<${key}\\b`))) {
+      if (importsByFile[file]) {
+        importsByFile[file].push(key);
+      } else {
+        importsByFile[file] = [key];
+      }
+    }
+  });
+
+  Object.entries(importsByFile).forEach((entry) => {
+    const [file, keys] = entry;
+    imports += `import {${keys.join(', ')}} from '${file}';\n`;
+  });
+
+  return `${imports}${source}`;
+});
+// END Handlebars Specific Transformers
 
 const runSteps = (...fns) =>
   fns.reduce((prevFn, nextFn) =>
@@ -111,7 +142,7 @@ const runSteps = (...fns) =>
 );
 
 const convert = runSteps(
-  // wrapInDivToAvoidOuterFragment
+  // TODO: wrapInDivToAvoidOuterFragment -- or just replace all <React.Fragment> with <div>?
   handleWhitespace,
   convertHandlebars,
   setupPropTypes,

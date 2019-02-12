@@ -25,7 +25,7 @@ const convertFile = async (inPath, outPath) => {
   return readFile(outPath, 'utf8');
 };
 
-const itConverts = (inFile) => {
+const itConverts = (inFile, skip) => {
   const expectedFile = inFile.replace(/.hbs/, '.expected.jsx');
   const outPath = fixture(`${basename(inFile, extname(inFile))}${extname(expectedFile)}`);
 
@@ -37,7 +37,13 @@ const itConverts = (inFile) => {
     await removeFile(outPath);
   });
 
-  it(`converts ${inFile} successfully`, async () => {
+  const testDescription = `converts ${inFile} successfully`;
+
+  if (skip) {
+    return it.skip(testDescription);
+  }
+
+  it(testDescription, async () => {
     const [output, expected] = await Promise.all([
       convertFile(fixture(inFile), outPath),
       readFile(fixture(expectedFile), 'utf8'),
@@ -48,23 +54,10 @@ const itConverts = (inFile) => {
 };
 
 describe('hbs-converter', () => {
-  context('when the template has no props', () => {
-    itConverts('single-div.hbs');
-  });
-
-  context('when the template one prop', () => {
-    itConverts('one-prop.hbs');
-  });
-
-  context('when the template multiple props', () => {
-    itConverts('three-props.hbs');
-  });
-
-  context('when there is bad whitespace that might cause React.Fragment tags', () => {
-    itConverts('whitespace-fragment.hbs');
-  });
-
-  context('when there is a known non-standard block', () => {
-    itConverts('link-block.hbs');
+  fs.readdirSync('./test/fixtures').forEach((file) => {
+    if (extname(file) === '.hbs') {
+      const skip = basename(file, '.hbs').endsWith('skip');
+      itConverts(file, skip);
+    }
   });
 });
