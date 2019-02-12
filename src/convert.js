@@ -151,7 +151,7 @@ const convert = runSteps(
   convertToClass,
   convertToFunctional,
   prettify,
-  lintFix,
+  // lintFix,
 );
 
 module.exports = async function convertFile(coffeePath) {
