@@ -1,6 +1,6 @@
 {
   "name": "hbs-converter",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Convert Handlebars into pretty JSX",
   "main": "index.js",
   "repository": "https://github.com/wheeler/hbs-converter.git",
@@ -15,12 +15,10 @@
   },
   "dependencies": {
     "commander": "^2.10.0",
-    "decaffeinate": "^4.0.1",
     "handlebars-to-jsx": "https://github.com/wheeler/handlebars-to-jsx#4cd0edce05eb3c28bdee5d1435bd2db1317eb75e",
     "jscodeshift": "^0.3.32",
     "lodash": "^4.17.11",
-    "prettier": "^1.11.0",
-    "react-codemod": "^4.0.0"
+    "prettier": "^1.11.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.2",
